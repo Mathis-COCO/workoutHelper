@@ -2,25 +2,22 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from 'src/controllers/app.controller';
+import { ExercicesController } from 'src/controllers/exercices.controller';
+import { ExercicesService } from 'src/services/exercices.service';
+import { Exercice } from 'src/entities/exercice.entity';
+import { dataSourceOptions } from 'src/db/data-source';
 
 @Module({
   imports: [
+    TypeOrmModule.forFeature([Exercice]),
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
     }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT, 10),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
-      autoLoadEntities: true,
-      synchronize: true, // À utiliser uniquement en développement
-    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
   ],
-  controllers: [AppController],
+  controllers: [AppController, ExercicesController],
+  providers: [ExercicesService],
   // controllers, providers
 })
 export class AppModule {}

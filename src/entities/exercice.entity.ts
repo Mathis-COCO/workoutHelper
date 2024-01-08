@@ -10,6 +10,4 @@ export class Exercice {
 
   @Column()
   muscle_cible: string;
-
-  // autres colonnes...
 }
