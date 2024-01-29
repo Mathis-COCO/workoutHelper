@@ -9,6 +9,8 @@ services:
       - "3000:3000"
     depends_on:
       - postgres
+      - grafana
+      - prometheus
     networks:
       - my-network
 
@@ -20,6 +22,21 @@ services:
       - POSTGRES_PASSWORD=12345
     ports:
       - "5432:5432"
+    networks:
+      - my-network
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - my-network
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3001:3000"
     networks:
       - my-network
 
