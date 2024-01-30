@@ -9,6 +9,7 @@ import { Muscle } from 'src/muscle/entities/muscle.entity';
 import { Exercice } from 'src/exercice/entities/exercice.entity';
 import { ExerciceController } from 'src/exercice/exercice.controller';
 import { ExerciceService } from 'src/exercice/exercice.service';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
@@ -18,6 +19,12 @@ import { ExerciceService } from 'src/exercice/exercice.service';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot(dataSourceOptions),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 1000,
+        limit: 50,
+      },
+    ]),
   ],
   controllers: [AppController, ExerciceController, MuscleController],
   providers: [ExerciceService, MuscleService],
