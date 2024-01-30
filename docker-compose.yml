@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - grafana
+      - prometheus
+    networks:
+      - my-network
+
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=WorkoutUser
+      - POSTGRES_PASSWORD=12345
+    ports:
+      - "5432:5432"
+    networks:
+      - my-network
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - my-network
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3001:3000"
+    networks:
+      - my-network
+
+networks:
+  my-network:
