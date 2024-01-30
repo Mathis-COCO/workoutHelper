@@ -9,10 +9,10 @@ import { ApiTags } from '@nestjs/swagger';
 export class ExerciceController {
   constructor(private readonly exerciceService: ExerciceService) {}
 
-  @Post()
-  create(@Body() createExerciceDto: CreateExerciceDto) {
-    return this.exerciceService.create(createExerciceDto);
-  }
+  // @Post()
+  // async createExercise(@Body() createExerciceDto: CreateExerciceDto) {
+  //   return this.exerciceService.create(createExerciceDto);
+  // }
 
   @Get()
   findAll() {

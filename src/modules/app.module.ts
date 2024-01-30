@@ -2,22 +2,24 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from 'src/controllers/app.controller';
-import { ExercicesController } from 'src/controllers/exercices.controller';
-import { ExercicesService } from 'src/services/exercices.service';
-import { Exercice } from 'src/entities/exercice.entity';
 import { dataSourceOptions } from 'src/db/data-source';
+import { MuscleController } from 'src/muscle/muscle.controller';
+import { MuscleService } from 'src/muscle/muscle.service';
+import { Muscle } from 'src/muscle/entities/muscle.entity';
+import { Exercice } from 'src/exercice/entities/exercice.entity';
+import { ExerciceController } from 'src/exercice/exercice.controller';
+import { ExerciceService } from 'src/exercice/exercice.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Exercice]),
+    TypeOrmModule.forFeature([Exercice, Muscle]),
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
     }),
     TypeOrmModule.forRoot(dataSourceOptions),
   ],
-  controllers: [AppController, ExercicesController],
-  providers: [ExercicesService],
-  // controllers, providers
+  controllers: [AppController, ExerciceController, MuscleController],
+  providers: [ExerciceService, MuscleService],
 })
 export class AppModule {}

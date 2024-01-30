@@ -7,9 +7,9 @@ export const dataSourceOptions: DataSourceOptions = {
   username: 'WorkoutUser',
   password: '12345',
   database: 'postgres',
-  synchronize: false,
+  // synchronize: false,
   entities: ['dist/**/*.entity.js'],
-  migrations: ['dist/migrations/*.js'],
+  migrations: ['dist/db/migrations/*.js'],
   migrationsTableName: 'migrationHistory',
 };
 

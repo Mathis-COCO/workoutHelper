@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateExerciceDto } from './dto/create-exercice.dto';
 import { UpdateExerciceDto } from './dto/update-exercice.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,9 +12,21 @@ export class ExerciceService {
     private exercicesRepository: Repository<Exercice>,
   ) {}
 
-  create(createExerciceDto: CreateExerciceDto) {
-    return 'This action adds a new exercice';
-  }
+  // async create(createExerciceDto: CreateExerciceDto) {
+  //   const { muscleName } = createExerciceDto;
+  //   const existingMuscle = await this.exercicesRepository.findOne({
+  //     where: { muscleName },
+  //   });
+
+  //   if (existingMuscle) {
+  //     throw new NotFoundException(
+  //       `Exersice with name '${name}' already exists`,
+  //     );
+  //   }
+
+  //   const newMuscle = this.exercicesRepository.create({ muscleName });
+  //   return this.exercicesRepository.save(newMuscle);
+  // }
 
   findAll() {
     return `This action returns all exercice`;

@@ -1,10 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity()
-export class Mucle {
+@Entity({ schema: 'public' })
+export class Muscle {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  nom: string;
+  name: string;
 }
