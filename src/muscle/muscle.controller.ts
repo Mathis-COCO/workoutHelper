@@ -1,8 +1,17 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { MuscleService } from './muscle.service';
 import { CreateMuscleDto } from './dto/create-muscle.dto';
 import { Muscle } from './entities/muscle.entity';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @ApiTags('muscles')
 @Controller('muscle')
@@ -10,6 +19,8 @@ export class MuscleController {
   constructor(private readonly muscleService: MuscleService) {}
 
   @Post()
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   async createMuscle(
     @Body() CreateMuscleDto: CreateMuscleDto,
   ): Promise<Muscle> {
@@ -27,6 +38,8 @@ export class MuscleController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   remove(@Param('id') id: number) {
     return this.muscleService.remove(id);
   }
