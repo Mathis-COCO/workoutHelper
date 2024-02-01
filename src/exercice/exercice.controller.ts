@@ -1,9 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { ExerciceService } from './exercice.service';
 import { CreateExerciceDto } from './dto/create-exercice.dto';
-import { ApiTags } from '@nestjs/swagger';
 import { Exercice } from './entities/exercice.entity';
-import { UpdateMuscleDto } from 'src/muscle/dto/update-muscle.dto';
 import { UpdateExerciceDto } from './dto/update-exercice.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from 'src/auth/auth.guard';

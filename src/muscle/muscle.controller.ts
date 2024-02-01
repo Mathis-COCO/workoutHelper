@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UseGuards,
+  Patch,
+} from '@nestjs/common';
 import { MuscleService } from './muscle.service';
 import { CreateMuscleDto } from './dto/create-muscle.dto';
 import { Muscle } from './entities/muscle.entity';
