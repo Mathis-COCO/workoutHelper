@@ -2,13 +2,13 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateExerciceDto {
-  @IsString()
-  @IsNotEmpty()
+  @IsString({ message: 'wrong format' })
+  @IsNotEmpty({ message: 'input is empty' })
   @ApiProperty()
-  readonly exerciseName: string;
+  readonly nom_exercice: string;
 
-  @IsString()
-  @IsNotEmpty()
+  @IsString({ message: 'wrong format' })
+  @IsNotEmpty({ message: 'input is empty' })
   @ApiProperty()
   readonly muscle_cible: string;
 }
