@@ -52,11 +52,15 @@ export class ExerciceController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   remove(@Param('id') id: number) {
     return this.exerciceService.remove(+id);
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   update(
     @Param('id') id: number,
     @Body() UpdateExerciceDto: UpdateExerciceDto,

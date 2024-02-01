@@ -5,7 +5,7 @@ export class UsersDTO {
   @IsNotEmpty()
   @IsString()
   @ApiProperty({
-    example: 'john',
+    example: 'username',
     required: true,
   })
   username: string;
@@ -13,7 +13,7 @@ export class UsersDTO {
   @IsNotEmpty()
   @IsString()
   @ApiProperty({
-    example: 'changeme',
+    example: 'password',
     required: true,
   })
   password: string;
