@@ -9,33 +9,33 @@ import { ApiTags } from '@nestjs/swagger';
 export class ExerciceController {
   constructor(private readonly exerciceService: ExerciceService) {}
 
-  // @Post()
-  // async createExercise(@Body() createExerciceDto: CreateExerciceDto) {
-  //   return this.exerciceService.create(createExerciceDto);
+  @Post()
+  async create(@Body() createExerciceDto: CreateExerciceDto) {
+    return this.exerciceService.create(createExerciceDto);
+  }
+
+  // @Get()
+  // findAll() {
+  //   return this.exerciceService.findAll();
   // }
 
-  @Get()
-  findAll() {
-    return this.exerciceService.findAll();
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.exerciceService.findOne(+id);
+  // }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.exerciceService.findOne(+id);
-  }
+  // @Get('exercices/:muscle')
+  // findByMuscle(@Param('muscle') muscle: string) {
+  //   return this.exerciceService.findByMuscle(muscle);
+  // }
 
-  @Get('exercices/:muscle')
-  findByMuscle(@Param('muscle') muscle: string) {
-    return this.exerciceService.findByMuscle(muscle);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateExerciceDto: UpdateExerciceDto) {
+  //   return this.exerciceService.update(+id, updateExerciceDto);
+  // }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateExerciceDto: UpdateExerciceDto) {
-    return this.exerciceService.update(+id, updateExerciceDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.exerciceService.remove(+id);
-  }
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.exerciceService.remove(+id);
+  // }
 }
