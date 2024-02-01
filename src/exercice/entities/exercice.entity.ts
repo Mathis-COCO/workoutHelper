@@ -6,7 +6,7 @@ export class Exercice {
   id: number;
 
   @Column()
-  nom: string;
+  nom_exercice: string;
 
   @Column()
   muscle_cible: string;

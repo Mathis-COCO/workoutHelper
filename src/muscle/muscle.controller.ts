@@ -1,8 +1,17 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Patch,
+} from '@nestjs/common';
 import { MuscleService } from './muscle.service';
 import { CreateMuscleDto } from './dto/create-muscle.dto';
 import { Muscle } from './entities/muscle.entity';
 import { ApiTags } from '@nestjs/swagger';
+import { UpdateMuscleDto } from './dto/update-muscle.dto';
 
 @ApiTags('muscles')
 @Controller('muscle')
@@ -29,5 +38,13 @@ export class MuscleController {
   @Delete(':id')
   remove(@Param('id') id: number) {
     return this.muscleService.remove(id);
+  }
+
+  @Patch(':id')
+  update(
+    @Param('id') id: number,
+    @Body() updateMuscleDto: UpdateMuscleDto,
+  ): Promise<void> {
+    return this.muscleService.update(id, updateMuscleDto);
   }
 }
