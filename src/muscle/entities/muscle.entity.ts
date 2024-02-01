@@ -6,5 +6,5 @@ export class Muscle {
   id: number;
 
   @Column()
-  name: string;
+  muscle_name: string;
 }

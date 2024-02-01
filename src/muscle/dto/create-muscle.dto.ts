@@ -5,5 +5,5 @@ export class CreateMuscleDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  readonly name: string;
+  readonly muscle_name: string;
 }
