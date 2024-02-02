@@ -4,7 +4,6 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { CreateExerciceDto } from './dto/create-exercice.dto';
-// import { UpdateExerciceDto } from './dto/update-exercice.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Exercice } from './entities/exercice.entity';
 import { Repository } from 'typeorm';
@@ -21,6 +20,7 @@ export class ExerciceService {
     private readonly muscleRepository: Repository<Muscle>,
   ) {}
 
+  // méthode pour créer un exercice
   async create(createExerciceDto: CreateExerciceDto) {
     const { nom_exercice, muscle_cible } = createExerciceDto;
 
@@ -51,10 +51,12 @@ export class ExerciceService {
     return this.exercicesRepository.save(newExercise);
   }
 
+  // méthode pour retreive tous les exercices
   findAll() {
     return this.exercicesRepository.find();
   }
 
+  // méthode pour trouver un exercice avec le nom de muscle
   findByMuscle(muscle: string): Promise<Exercice[]> {
     const exerciseToSearch = this.exercicesRepository.find({
       where: {
@@ -67,6 +69,7 @@ export class ExerciceService {
     return exerciseToSearch;
   }
 
+  // méthode de retreive d'exercices par nom d'exercice
   findAnExercise(exercise: string): Promise<Exercice> {
     const exerciseToSearch = this.exercicesRepository.findOne({
       where: {
@@ -79,6 +82,7 @@ export class ExerciceService {
     return exerciseToSearch;
   }
 
+  // méthode pour trouver un exercice que ce soit par nom d'exo ou par muscle (fonctionne pas complètement - bug avec le nom d'exo)
   findByAny(anyData: string): Promise<Exercice[]> | Promise<Exercice> {
     const isMuscle = this.exercicesRepository.find({
       where: {
@@ -100,6 +104,7 @@ export class ExerciceService {
     throw new NotFoundException(`Could't find ${anyData}.`);
   }
 
+  // méthode pour supprimer un exercice avec son id
   async remove(id: number): Promise<void> {
     const exerciseToRemove = await this.exercicesRepository.findOne({
       where: { id },
@@ -110,6 +115,7 @@ export class ExerciceService {
     await this.exercicesRepository.remove(exerciseToRemove);
   }
 
+  // méthode pour update un exo avec son id
   async update(
     id: number,
     updateExerciceDto: UpdateExerciceDto,

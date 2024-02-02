@@ -16,6 +16,7 @@ export class MuscleService {
     private readonly muscleRepository: Repository<Muscle>,
   ) {}
 
+  // méthode pour créer un muscle
   async createMuscle(createMuscleDto: CreateMuscleDto): Promise<Muscle> {
     const { muscle_name } = createMuscleDto;
     const existingMuscle = await this.muscleRepository.findOne({
@@ -32,16 +33,19 @@ export class MuscleService {
     return this.muscleRepository.save(newMuscle);
   }
 
+  // méthode pour récupérer tous les muscles
   async getAllMuscles(): Promise<Muscle[]> {
     return this.muscleRepository.find();
   }
 
+  // méthode pour récupérer un muscle par son nom
   async getOneMuscle(muscle_name: string) {
     return this.muscleRepository.findOne({
       where: { muscle_name },
     });
   }
 
+  //. méthode pour supprimer un muscle
   async remove(id: number): Promise<void> {
     const muscleToRemove = await this.muscleRepository.findOne({
       where: { id },
@@ -52,6 +56,7 @@ export class MuscleService {
     await this.muscleRepository.remove(muscleToRemove);
   }
 
+  // méthode pour mettre les donnéees d'un muscle à jour
   async update(id: number, updateMuscleDto: UpdateMuscleDto): Promise<void> {
     const muscleToUpdate = await this.muscleRepository.findOne({
       where: { id },
