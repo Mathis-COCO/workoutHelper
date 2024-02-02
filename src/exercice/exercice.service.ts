@@ -34,7 +34,7 @@ export class ExerciceService {
 
     // pareil mais avec l'exercice existe déjà pour éviter les doublons
     const existingExercise = await this.exercicesRepository.findOne({
-      where: { nom_exercice },
+      where: { nom_exercice, muscle_cible },
     });
 
     if (existingExercise) {
