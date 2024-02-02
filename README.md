@@ -1,73 +1,44 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# PROJET WEB SERVICE : Workout Helper
+## Mathis COCO & Jules DUPUIS
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+**Le but de ce Service est de proposer des exercices de musculation qui seront liés au muscles disponible sur les applications de nos clients.** Avec notre API, chaque client peut:
+- chercher un muscle et voir la liste des exercices qui font travailler ce muscle
+- chercher un exercice et voir la liste des muscles qu'il fait travailler
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Il y a aussi une fonctionnalité d'authentification qui permettra aux administrateurs de CREATE, UPDATE, DELETE (voir paragraphe Authentification)
 
-## Description
+### Installation
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Pour faire fonctionner ce projet, veuillez tout d'abord l'importer sur votre ordinateur en local. Ensuite démarrez le logiciel **Docker Desktop**, si vous ne l'avez pas, vous pouvez l'installer. 
 
-## Installation
+Vous pouvez démarrer un terminal situé dans le dossier racine du projet et commencer par bien installer tous les paquets du projet:
 
-```bash
+```
 $ npm install
 ```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+Vous allez pouvoir ensuite démarrer notre projet à l'aide de Docker avec la commande suivante:
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+$ docker compose up --build
 ```
+Cette commande va créer des containers au sein de Docker et faire fonctionner notre projet.
+Lorsque vous avez le message suivant sur votre terminal c'est que le service a bien démarré:
 
-## Support
+![Service bien démarré](https://cdn.discordapp.com/attachments/1161282688553062553/1202909230324260904/image.png?ex=65cf2b85&is=65bcb685&hm=78e053141b9ca03c4f46b9fc3fa06b7df4cb5d4fd440799749ad901f556a3683&)
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Vous pouvez donc démarrer votre navigateur et accéder au service en localhost:
+```
+http://localhost:3000/api
+```
+Ici vous pouvez jouer avec l'api, si vous êtes authentifié vous pouvez "Post", "Update" et "Delete" 
 
-## Stay in touch
+![Aperçu de la fenetre API](https://cdn.discordapp.com/attachments/1161282688553062553/1202910696967376906/image.png?ex=65cf2ce3&is=65bcb7e3&hm=6acd313c59690fa5dbee5b5d131f65aa5a15e177dd74a86ec6539a89fec5e1ea&)
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Authentification
 
-## License
+La méthode d'authentification est simple, vous pouvez développer la méthode POST "/auth/login" , cliquer sur le bouton "Try it out" puis directement le bouton "Execute". Cette commande vous donne un "access_token" que vous devez copier et mettre dans le champ en cliquant (en haut de la page) sur le bouton "Authorize". Après cela vous avez les droits pour POST, UPDATE et DELETE, donc le création de muscle, d'exercice, leur modification et leur suppression.
 
-Nest is [MIT licensed](LICENSE).
+### Outils 
+
+Certains outils sont disponibles avec notre programme, vous pouvez accéder à:
+- Grafana (localhost:3001)
+- Prometheus (localhost:9090)
